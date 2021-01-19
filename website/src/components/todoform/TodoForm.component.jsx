@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
+import React, {useState} from 'react';
+import {v4 as uuidv4} from 'uuid';
+import {Button, TextField, Tooltip} from "@material-ui/core";
+import AddIcon from '@material-ui/icons/Add';
+import './TodoForm.style.css';
 
-function TodoForm({ addTodo }) {
+function TodoForm({addTodo}) {
     const [todo, setTodo] = useState({
         id: "",
         task: "",
@@ -11,14 +12,14 @@ function TodoForm({ addTodo }) {
     });
 
     function handleTaskInputChange(event) {
-        setTodo({ ...todo, task: event.target.value });
+        setTodo({...todo, task: event.target.value});
     }
 
     function handleSubmit(event) {
         event.preventDefault();
         if (todo.task.trim()) {
-            addTodo({ ...todo, id: uuidv4() });
-            setTodo({ ...todo, task: "" });
+            addTodo({...todo, id: uuidv4()});
+            setTodo({...todo, task: ""});
         }
     }
 
@@ -26,13 +27,16 @@ function TodoForm({ addTodo }) {
         <form onSubmit={handleSubmit}>
             <TextField
                 name="task"
-                variant="filled"
                 type="text"
-                label="Todo"
+                label="Task"
                 value={todo.task}
                 onChange={handleTaskInputChange}
             />
-            <Button type="submit" color="primary" variant="contained">Add</Button>
+            <Tooltip title="Add a new task">
+                <Button className="addBtn" type="submit">
+                    <AddIcon/>
+                </Button>
+            </Tooltip>
         </form>
     );
 }
