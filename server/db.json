@@ -1,3 +1,14 @@
 {
-	"todos": []
+  "todos": [
+    {
+      "id": "c8254d65-4ff6-41c2-a2b0-ee2eaf4bb430",
+      "task": "Test",
+      "completed": true
+    },
+    {
+      "id": "c0859b1c-408b-4868-84a5-63c3fd209e06",
+      "task": "Test12",
+      "completed": false
+    }
+  ]
 }

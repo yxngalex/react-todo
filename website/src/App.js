@@ -4,49 +4,48 @@ import logo from './logo.svg';
 import TodoForm from "./components/todoform/TodoForm.component";
 import TodoList from "./components/todolist/TodoList.component";
 import Typography from "@material-ui/core/Typography";
-
-const LOCAL_STORAGE_KEY = 'react-todo-list-todos';
+import {deleteTodo, getAllTodos, saveTodo, updateTodo} from "./services/services.service";
 
 function App() {
     const [todos, setTodos] = useState([]);
 
     useEffect(() => {
-        const storageTools = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
-        if (storageTools) {
-            setTodos(storageTools);
-        }
+        getAllTodos().then(setTodos);
     }, []);
 
-    function toggleComplete(id) {
-        setTodos(
-            todos.map(todo => {
-                if (todo.id === id) {
-                    return {
-                        ...todo,
-                        completed: !todo.completed
-                    }
-                }
-                return todo;
-            })
-        );
-    }
-
-    useEffect(() => {
-        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(todos));
+    useEffect( () => {
+        console.log(todos);
     }, [todos])
 
-    function addTodo(todo) {
-        setTodos([todo, ...todos]);
+    function toggleComplete(id) {
+        const singleTodo = todos.find(_todo => _todo.id === id);
+        singleTodo.completed = !singleTodo.completed;
+        updateTodo(singleTodo).then(_todo => {
+            setTodos(
+                todos.map(todo => {
+                    if (todo.id === id) {
+                        return _todo;
+                    }
+                    return todo;
+                })
+            );
+        });
 
+    }
+
+    function addTodo(todoToBeSaved) {
+        saveTodo(todoToBeSaved)
+            .then(savedTodo => setTodos([savedTodo, ...todos]));
     }
 
     function removeTodo(id) {
-        setTodos(todos.filter(todo => todo.id !== id));
+        deleteTodo(id)
+            .then(() => setTodos(todos.filter(todo => todo.id !== id)));
     }
 
     return (
         <div className="App">
-            <img src={logo} alt="Logo" />
+            <img src={logo} alt="Logo"/>
             <Typography className="typography" variant="h1">
                 <span>React</span> {"Todo"}
             </Typography>
