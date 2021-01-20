@@ -13,7 +13,7 @@ body,
 html,
 #root {
     height: 100%;
-    background-color: whitesmoke;
+    background-color: #282c34;
     font-family: Roboto, "sans-serif";
     font-size: 21px;
 }
