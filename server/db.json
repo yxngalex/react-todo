@@ -1,14 +1,9 @@
 {
   "todos": [
     {
-      "id": "c17e30ce-aed7-43a0-acdf-92cfe8573d25",
-      "task": "Task 1",
-      "completed": false
-    },
-    {
       "id": "a4210ed0-997e-42a0-86b2-3cab2f5b6ce8",
       "task": "Task 2",
-      "completed": true
+      "completed": false
     },
     {
       "id": "b0a8d889-c1b3-4e44-a8fe-99e5712eb358",
@@ -18,7 +13,12 @@
     {
       "id": "3f58accd-b667-40a1-8f99-3cdcc35da663",
       "task": "Task 4",
-      "completed": true
+      "completed": false
+    },
+    {
+      "id": "81120160-6da6-437e-ba7d-eb28b6655dc7",
+      "task": "Task 1",
+      "completed": false
     }
   ]
 }

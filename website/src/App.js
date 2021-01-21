@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import './App.css';
 import logo from './logo.svg';
 import TodoForm from "./components/todoform/TodoForm.component";
 import TodoList from "./components/todolist/TodoList.component";
 import Typography from "@material-ui/core/Typography";
-import {deleteTodo, getAllTodos, saveTodo, updateTodo} from "./services/services.service";
+import { deleteTodo, getAllTodos, saveTodo, updateTodo } from "./services/services.service";
 
 function App() {
     const [todos, setTodos] = useState([]);
@@ -13,9 +13,9 @@ function App() {
         getAllTodos().then(setTodos);
     }, []);
 
-    useEffect( () => {
+    useEffect(() => {
         console.log(todos);
-    }, [todos])
+    }, [todos]);
 
     function toggleComplete(id) {
         const singleTodo = todos.find(_todo => _todo.id === id);
@@ -45,17 +45,17 @@ function App() {
 
     return (
         <div className="App">
-            <img src={logo} alt="Logo"/>
+            <img src={logo} alt="Logo" />
             <Typography className="typography" variant="h1">
                 <span>React</span> {"Todo"}
             </Typography>
             <Typography className="typography">
                 Simple react todo app Made by <span>Aleksa Cekic</span>.
             </Typography>
-            <TodoForm addTodo={addTodo}/>
+            <TodoForm addTodo={addTodo} />
             <TodoList todos={todos}
-                      toggleComplete={toggleComplete}
-                      removeTodo={removeTodo}
+                toggleComplete={toggleComplete}
+                removeTodo={removeTodo}
             />
         </div>
     );
